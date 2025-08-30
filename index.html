@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyTaxi - Urban Flying Taxi Network</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="logo">
+                    <div class="logo-icon">✈</div>
+                    <h1>SkyTaxi</h1>
+                    <p>Urban Flying Taxi Network</p>
+                </div>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Sign In</button>
+                </form>
+                
+                <div class="login-footer">
+                    <p>Don't have an account? <a href="#" id="signupLink">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="background-animation">
+            <div class="flying-taxi" style="--delay: 0s; --duration: 15s;"></div>
+            <div class="flying-taxi" style="--delay: 5s; --duration: 20s;"></div>
+            <div class="flying-taxi" style="--delay: 10s; --duration: 18s;"></div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardScreen" class="screen">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-small">
+                    <div class="logo-icon">✈</div>
+                    <span>SkyTaxi</span>
+                </div>
+                
+                <nav class="nav-tabs">
+                    <button class="nav-tab active" data-tab="booking">Booking</button>
+                    <button class="nav-tab" data-tab="tracking">Tracking</button>
+                    <button class="nav-tab" data-tab="traffic">Traffic Control</button>
+                </nav>
+                
+                <div class="user-menu">
+                    <span class="user-name">Welcome, User</span>
+                    <button id="logoutBtn" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Booking Tab -->
+            <div id="bookingTab" class="tab-content active">
+                <div class="booking-section">
+                    <div class="booking-form-container">
+                        <h2>Book Your Flying Taxi</h2>
+                        
+                        <form id="bookingForm" class="booking-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pickup">Pickup Location</label>
+                                    <input type="text" id="pickup" placeholder="Enter pickup location" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="destination">Destination</label>
+                                    <input type="text" id="destination" placeholder="Enter destination" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="passengers">Passengers</label>
+                                    <select id="passengers" required>
+                                        <option value="1">1 Passenger</option>
+                                        <option value="2">2 Passengers</option>
+                                        <option value="3">3 Passengers</option>
+                                        <option value="4">4 Passengers</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="priority">Priority</label>
+                                    <select id="priority" required>
+                                        <option value="standard">Standard</option>
+                                        <option value="express">Express (+$50)</option>
+                                        <option value="emergency">Emergency (+$200)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-book">Find Available Taxis</button>
+                        </form>
+                        
+                        <div id="availableTaxis" class="available-taxis hidden">
+                            <h3>Available Flying Taxis</h3>
+                            <div class="taxi-options">
+                                <!-- Taxi options will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="route-preview">
+                        <div class="map-container">
+                            <div class="map">
+                                <div class="skyline">
+                                    <div class="building" style="height: 120px; left: 10%;"></div>
+                                    <div class="building" style="height: 180px; left: 25%;"></div>
+                                    <div class="building" style="height: 100px; left: 45%;"></div>
+                                    <div class="building" style="height: 200px; left: 60%;"></div>
+                                    <div class="building" style="height: 150px; left: 80%;"></div>
+                                </div>
+                                <div class="air-routes">
+                                    <div class="route-line route-1"></div>
+                                    <div class="route-line route-2"></div>
+                                    <div class="route-line route-3"></div>
+                                </div>
+                                <div class="flying-vehicles">
+                                    <div class="vehicle" style="--path: 1; --speed: 8s;"></div>
+                                    <div class="vehicle" style="--path: 2; --speed: 12s;"></div>
+                                    <div class="vehicle" style="--path: 3; --speed: 10s;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="route-info">
+                            <h3>Route Information</h3>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">Distance:</span>
+                                    <span class="value" id="routeDistance">--</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Flight Time:</span>
+                                    <span class="value" id="flightTime">--</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Altitude:</span>
+                                    <span class="value" id="altitude">500m</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Weather:</span>
+                                    <span class="value" id="weather">Clear</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tracking Tab -->
+            <div id="trackingTab" class="tab-content">
+                <div class="tracking-section">
+                    <div class="active-flights">
+                        <h2>Your Active Flights</h2>
+                        <div class="flight-cards">
+                            <div class="flight-card">
+                                <div class="flight-header">
+                                    <div class="flight-id">ST-2025-001</div>
+                                    <div class="flight-status status-en-route">En Route</div>
+                                </div>
+                                <div class="flight-details">
+                                    <div class="route">
+                                        <span class="from">Downtown Plaza</span>
+                                        <div class="route-arrow">→</div>
+                                        <span class="to">Airport Terminal</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 65%;"></div>
+                                    </div>
+                                    <div class="eta">ETA: 3 minutes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="live-tracking">
+                        <h3>Live Tracking</h3>
+                        <div class="tracking-map">
+                            <div class="tracking-grid">
+                                <div class="active-taxi" style="--x: 30%; --y: 40%;">
+                                    <div class="taxi-icon">🚁</div>
+                                    <div class="taxi-trail"></div>
+                                </div>
+                                <div class="destination-marker" style="--x: 80%; --y: 20%;">📍</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tracking-stats">
+                            <div class="stat">
+                                <div class="stat-label">Current Speed</div>
+                                <div class="stat-value">180 km/h</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Altitude</div>
+                                <div class="stat-value">485m</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">Distance Remaining</div>
+                                <div class="stat-value">2.1 km</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traffic Control Tab -->
+            <div id="trafficTab" class="tab-content">
+                <div class="traffic-section">
+                    <div class="traffic-overview">
+                        <h2>Airspace Traffic Management</h2>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon">🚁</div>
+                                <div class="metric-info">
+                                    <div class="metric-value">24</div>
+                                    <div class="metric-label">Active Flights</div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-icon">📊</div>
+                                <div class="metric-info">
+                                    <div class="metric-value">89%</div>
+                                    <div class="metric-label">Efficiency Rate</div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-icon">⚡</div>
+                                <div class="metric-info">
+                                    <div class="metric-value">4.2min</div>
+                                    <div class="metric-label">Avg Response</div>
+                                </div>
+                            </div>
+                            
+                            <div class="metric-card">
+                                <div class="metric-icon">🛡️</div>
+                                <div class="metric-info">
+                                    <div class="metric-value">100%</div>
+                                    <div class="metric-label">Safety Score</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="traffic-map">
+                        <h3>Live Airspace View</h3>
+                        <div class="airspace-grid">
+                            <div class="grid-layer"></div>
+                            <div class="traffic-vehicles">
+                                <div class="traffic-vehicle" style="--x: 20%; --y: 30%; --speed: 6s;">
+                                    <div class="vehicle-dot"></div>
+                                    <div class="vehicle-trail"></div>
+                                </div>
+                                <div class="traffic-vehicle" style="--x: 60%; --y: 50%; --speed: 8s;">
+                                    <div class="vehicle-dot"></div>
+                                    <div class="vehicle-trail"></div>
+                                </div>
+                                <div class="traffic-vehicle" style="--x: 80%; --y: 20%; --speed: 7s;">
+                                    <div class="vehicle-dot"></div>
+                                    <div class="vehicle-trail"></div>
+                                </div>
+                            </div>
+                            <div class="no-fly-zones">
+                                <div class="restricted-zone" style="top: 10%; left: 40%; width: 15%; height: 20%;"></div>
+                                <div class="restricted-zone" style="top: 70%; left: 10%; width: 20%; height: 15%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

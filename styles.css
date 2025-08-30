@@ -1,0 +1,1132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+    color: #F8FAFC;
+    overflow-x: hidden;
+}
+
+/* Screen Management */
+.screen {
+    display: none;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Login Screen Styles */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.logo p {
+    color: #94A3B8;
+    font-size: 1rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #E2E8F0;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #F8FAFC;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0EA5E9;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #64748B;
+}
+
+.btn-primary {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #94A3B8;
+}
+
+.login-footer a {
+    color: #0EA5E9;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Background Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.flying-taxi {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(45deg, #0EA5E9, #06B6D4);
+    border-radius: 15px;
+    animation: flyAcross var(--duration, 15s) linear infinite;
+    animation-delay: var(--delay, 0s);
+    opacity: 0.7;
+}
+
+.flying-taxi::before {
+    content: '🚁';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+}
+
+@keyframes flyAcross {
+    0% {
+        left: -80px;
+        top: 20%;
+    }
+    25% {
+        top: 40%;
+    }
+    50% {
+        top: 60%;
+    }
+    75% {
+        top: 30%;
+    }
+    100% {
+        left: calc(100% + 80px);
+        top: 50%;
+    }
+}
+
+/* Dashboard Styles */
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-small {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.logo-small .logo-icon {
+    font-size: 1.8rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-tab {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #94A3B8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #F8FAFC;
+}
+
+.nav-tab.active {
+    background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+    border-color: transparent;
+    color: white;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-name {
+    color: #E2E8F0;
+    font-weight: 500;
+}
+
+.btn-logout {
+    padding: 0.5rem 1rem;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    border-radius: 8px;
+    color: #FCA5A5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(239, 68, 68, 0.3);
+    color: #FECACA;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Booking Section */
+.booking-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.booking-form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.booking-form-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #F8FAFC;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group select {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #F8FAFC;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #0EA5E9;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-book {
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #F97316, #EA580C);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(249, 115, 22, 0.4);
+}
+
+.available-taxis {
+    margin-top: 2rem;
+    animation: slideDown 0.5s ease-out;
+}
+
+.available-taxis.hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.taxi-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.taxi-option {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.taxi-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #0EA5E9;
+    transform: translateY(-2px);
+}
+
+.taxi-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taxi-details h4 {
+    color: #F8FAFC;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.taxi-details p {
+    color: #94A3B8;
+    font-size: 0.9rem;
+}
+
+.taxi-price {
+    text-align: right;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #10B981;
+}
+
+.eta {
+    color: #94A3B8;
+    font-size: 0.9rem;
+}
+
+/* Route Preview */
+.route-preview {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    height: fit-content;
+}
+
+.map-container {
+    margin-bottom: 2rem;
+}
+
+.map {
+    height: 300px;
+    background: linear-gradient(180deg, #3B82F6 0%, #1E40AF 100%);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, transparent 0%, #1E293B 100%);
+}
+
+.building {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(180deg, #374151, #1F2937);
+    border-radius: 4px 4px 0 0;
+    animation: buildingGlow 4s ease-in-out infinite;
+}
+
+@keyframes buildingGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(14, 165, 233, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.5); }
+}
+
+.air-routes {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    height: 60%;
+}
+
+.route-line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #06B6D4, transparent);
+    border-radius: 1px;
+    animation: routePulse 3s ease-in-out infinite;
+}
+
+.route-1 {
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.route-2 {
+    top: 50%;
+    left: 5%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+.route-3 {
+    top: 80%;
+    left: 15%;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes routePulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.flying-vehicles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.vehicle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #F97316;
+    border-radius: 50%;
+    animation: vehiclePath var(--speed, 10s) linear infinite;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+@keyframes vehiclePath {
+    0% {
+        left: -30px;
+        top: calc(20% * var(--path, 1));
+    }
+    100% {
+        left: calc(100% + 30px);
+        top: calc(80% * var(--path, 1));
+    }
+}
+
+.route-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #F8FAFC;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item .label {
+    color: #94A3B8;
+    font-size: 0.9rem;
+}
+
+.info-item .value {
+    color: #F8FAFC;
+    font-weight: 600;
+}
+
+/* Tracking Section */
+.tracking-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.active-flights h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #F8FAFC;
+}
+
+.flight-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flight-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.flight-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.flight-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.flight-id {
+    font-weight: 600;
+    color: #F8FAFC;
+    font-family: 'Courier New', monospace;
+}
+
+.flight-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-en-route {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6EE7B7;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.route {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.route-arrow {
+    color: #06B6D4;
+    font-weight: bold;
+}
+
+.from, .to {
+    color: #E2E8F0;
+    font-weight: 500;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #0EA5E9, #06B6D4);
+    border-radius: 3px;
+    animation: progressGlow 2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(14, 165, 233, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.8); }
+}
+
+.eta {
+    color: #94A3B8;
+    font-size: 0.9rem;
+}
+
+.live-tracking {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.live-tracking h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #F8FAFC;
+}
+
+.tracking-map {
+    height: 300px;
+    background: linear-gradient(135deg, #1E293B, #334155);
+    border-radius: 16px;
+    position: relative;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.tracking-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 165, 233, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.active-taxi {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    animation: taxiMove 8s ease-in-out infinite;
+}
+
+.taxi-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.8));
+    animation: hover 2s ease-in-out infinite;
+}
+
+@keyframes hover {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes taxiMove {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-50%, -50%) rotate(10deg); }
+    50% { transform: translate(-50%, -50%) rotate(0deg); }
+    75% { transform: translate(-50%, -50%) rotate(-10deg); }
+    100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.taxi-trail {
+    position: absolute;
+    top: 50%;
+    left: -50px;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #F97316);
+    border-radius: 1px;
+    animation: trailFade 1s ease-in-out infinite;
+}
+
+@keyframes trailFade {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.destination-marker {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    animation: markerPulse 2s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.tracking-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.stat-label {
+    color: #94A3B8;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    color: #F8FAFC;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* Traffic Control Section */
+.traffic-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.traffic-overview h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #F8FAFC;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.metric-icon {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0EA5E9, #06B6D4);
+    border-radius: 12px;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    color: #94A3B8;
+    font-size: 0.9rem;
+}
+
+.traffic-map {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.traffic-map h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #F8FAFC;
+}
+
+.airspace-grid {
+    height: 400px;
+    background: linear-gradient(135deg, #0F172A, #1E293B);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridShift 6s linear infinite;
+}
+
+@keyframes gridShift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(40px, 40px); }
+}
+
+.traffic-vehicles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.traffic-vehicle {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    animation: trafficMove var(--speed, 10s) linear infinite;
+}
+
+.vehicle-dot {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #F97316, #EA580C);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+    animation: vehicleBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes vehicleBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes trafficMove {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-50%, -50%) rotate(90deg); }
+    50% { transform: translate(-50%, -50%) rotate(180deg); }
+    75% { transform: translate(-50%, -50%) rotate(270deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.vehicle-trail {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #F97316);
+    transform: translateY(-50%);
+}
+
+.no-fly-zones {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.restricted-zone {
+    position: absolute;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px dashed rgba(239, 68, 68, 0.5);
+    border-radius: 8px;
+    animation: warningPulse 3s ease-in-out infinite;
+}
+
+@keyframes warningPulse {
+    0%, 100% { 
+        background: rgba(239, 68, 68, 0.1);
+        border-color: rgba(239, 68, 68, 0.5);
+    }
+    50% { 
+        background: rgba(239, 68, 68, 0.2);
+        border-color: rgba(239, 68, 68, 0.8);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .booking-section,
+    .tracking-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .nav-tabs {
+        order: 2;
+    }
+    
+    .user-menu {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .login-card {
+        margin: 1rem;
+        padding: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-grid,
+    .tracking-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-tabs {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .header-content {
+        padding: 0 1rem;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Loading States */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #0EA5E9;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(16, 185, 129, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notification.error {
+    background: rgba(239, 68, 68, 0.9);
+}
+
+.notification.warning {
+    background: rgba(245, 158, 11, 0.9);
+}
