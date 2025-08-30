@@ -22,7 +22,7 @@ SkyTaxi is an experimental web-based interface for booking and tracking flying t
 
 ##  Demo
 
-Open the app here: [SkyTaxi Live Demo](https://vaishnavijaiswal-1001.github.io/FutureRides/)
+Open the app here: [SkyTaxi Live Demo](https://futurerides.netlify.app/)
 
 ---
 
