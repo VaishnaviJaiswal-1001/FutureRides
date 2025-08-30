@@ -49,7 +49,7 @@ class SkyTaxiApp {
         this.showLoading(e.target.querySelector('button'));
         
         setTimeout(() => {
-            this.currentUser = { email, name: 'John Doe' };
+            this.currentUser = { email, name: 'User' };
             this.showScreen('dashboardScreen');
             this.showNotification('Welcome to SkyTaxi!', 'success');
             this.updateUserDisplay();
